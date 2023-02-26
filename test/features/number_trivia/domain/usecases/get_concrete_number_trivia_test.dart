@@ -20,10 +20,11 @@ void main() {
   const tNumberTrivia = NumberTrivia(text: "Test",number: 1);
 
   test('Should get trivia for number from repository',() async{
+
     when(mocNumberTriviaRepository!.getConcreteNumberTrivia(1))
         .thenAnswer((_) async => const Right(tNumberTrivia));
 
-    final result = await useCase!.execute(number: tNumber);
+    final result = await useCase!(const Param(number: tNumber));
 
     expect(result, const Right(tNumberTrivia));
 
